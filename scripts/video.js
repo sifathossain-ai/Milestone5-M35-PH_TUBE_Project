@@ -74,7 +74,7 @@ const displayVideos = (data) => {
                 class = "h-full w-full object-cover rounded-lg"
                 alt="Videos" />
             </figure>
-            <div class="px-0 py-4 flex gap-3">
+            <div class="px-0 py-4 flex gap-3 items-center">
                 <div>
                     <img class = "h-10 w-10 object-cover rounded-full" src = ${item.authors[0].profile_picture} />
                 </div>
@@ -83,7 +83,7 @@ const displayVideos = (data) => {
                     <h2 class = "font-bold">${item.title}</h2>
                     <div class = "flex gap-2">
                         <small class = "text-gray-500 font-semibold">${item.authors[0].profile_name}</small>
-                        <i class="fa-solid fa-star text-[#2568EF]"></i>
+                        ${item.authors[0].verified === true ? `<i class="fa-solid fa-star text-[#2568EF]"></i>` : ""}
                     </div>
                 </div>
             </div>
