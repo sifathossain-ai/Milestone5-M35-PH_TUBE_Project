@@ -68,11 +68,12 @@ const displayVideos = (data) => {
         const card = document.createElement('div');
         card.classList = " ";
         card.innerHTML = `
-            <figure>
+            <figure class = "h-[200px]">
                 <img
                 src=${item.thumbnail}
+                class = "h-full w-full object-cover"
                 alt="Videos" />
-                </figure>
+            </figure>
             <div class="card-body">
                 <h2 class="card-title">Card Title</h2>
                 <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
