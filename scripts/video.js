@@ -9,6 +9,16 @@ const loadCategories = () => {
         .catch(error => console.log("ERROR IS: ", error))
 };
 
+// Show Category Wise Videos
+
+const LoadCategoryVideos = (id) => {
+    // alert(id);
+    fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+        .then(res => res.json())
+        .then(data => displayVideos(data.category))
+        .catch(error => console.log("ERROR IS: ", error))
+}
+
 // Create DisplayCategories
 
 const displayCategories = (data) => {
@@ -17,12 +27,12 @@ const displayCategories = (data) => {
         // console.log(item);
 
         // Create Button
-        const button = document.createElement('button');
-        button.classList = 'btn bg-gray-100 border-none';
-        button.innerText = item.category;
-
+        const buttonContainer = document.createElement('div');
+        buttonContainer.innerHTML = `
+            <button onclick = "LoadCategoryVideos(${item.category_id})" class ="btn bg-gray-100 border-none">${item.category}</button>
+        `
         // Add button to display
-        categoryDisplay.appendChild(button)
+        categoryDisplay.appendChild(buttonContainer)
     }
 };
 
@@ -63,8 +73,23 @@ async function loadVideos() {
  */
 const displayVideos = (data) => {
     const videoContainer = document.getElementById('videos');
+    videoContainer.innerHTML = "";
+
+    if (data.length === 0){
+        videoContainer.classList.remove('grid');
+        videoContainer.innerHTML = `
+            <div class = "min-h-[300px] flex flex-col gap-3 justify-center items-center">
+                <img src = "assets/Icon.png"/>
+                <h2 class = "text-xl font-bold text-center pt-2">Oops! Sorry, No Contain <br>Here Available</H>
+            </div>
+        `
+    }
+    else{
+        videoContainer.classList.add('grid');
+    }
+
     data.forEach(item => {
-        console.log(item)
+        // console.log(item)
         const card = document.createElement('div');
         card.classList = " ";
         card.innerHTML = `
@@ -74,10 +99,10 @@ const displayVideos = (data) => {
                 class = "h-full w-full object-cover rounded-lg"
                 alt="Videos" />
 
-                ${item.others.posted_date?.length == 0 ? "" : 
-                    `<span class ="absolute right-2 bottom-2 bg-black rounded-md text-white py-1 px-1.5 text-center text-[10px]">
+                ${item.others.posted_date?.length == 0 ? "" :
+                `<span class ="absolute right-2 bottom-2 bg-black rounded-md text-white py-1 px-1.5 text-center text-[10px]">
                     ${parseInt((item.others.posted_date) / 3600)} hrs ${parseInt(((item.others.posted_date) % 3600) / 60)} min ago</span>`
-                }
+            }
             </figure>
             <div class="px-0 py-4 flex gap-3 items-center">
                 <div>
