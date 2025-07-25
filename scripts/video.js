@@ -75,7 +75,7 @@ const displayVideos = (data) => {
                 alt="Videos" />
 
                 ${item.others.posted_date?.length == 0 ? "" : 
-                    `<span class ="absolute right-2 bottom-2 bg-black rounded-md text-white py-1 px-1.5">
+                    `<span class ="absolute right-2 bottom-2 bg-black rounded-md text-white py-1 px-1.5 text-center text-[10px]">
                     ${parseInt((item.others.posted_date) / 3600)} hrs ${parseInt(((item.others.posted_date) % 3600) / 60)} min ago</span>`
                 }
             </figure>
