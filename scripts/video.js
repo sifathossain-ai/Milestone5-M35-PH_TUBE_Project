@@ -20,7 +20,7 @@ const displayCategories = (data) => {
 
         // Create Button
         const button = document.createElement('button');
-        button.classList = 'btn bg-gray-200';
+        button.classList = 'btn bg-gray-100';
         button.innerText = item.category;
 
         // Add button to display

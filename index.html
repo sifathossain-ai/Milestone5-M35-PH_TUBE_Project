@@ -11,10 +11,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
+<body class="w-11/12 mx-auto ">
 
     <header>
-        <nav class="w-11/12 mx-auto mt-12 pb-8 flex justify-between items-center border-b border-gray-300 gap-2">
+        <nav class="mt-12 pb-8 flex justify-between items-center border-b border-gray-300 gap-2">
             <div class="logo w-[100px]">
                 <img src="assets/Logo.png" alt="">
             </div>
@@ -31,13 +31,13 @@
                 </label>
             </div>
             <div class="sort">
-                <button class="btn bg-gray-200">SORT</button>
+                <button class="btn bg-gray-100">SORT</button>
             </div>
         </nav>
     </header>
     <nav id="categories" class="flex items-center justify-center gap-2 md:gap-5 mt-8"></nav>
     <main>
-
+        <section id="videos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 py-10"></section>
     </main>
 
     <!-- Scripts cdn -->
