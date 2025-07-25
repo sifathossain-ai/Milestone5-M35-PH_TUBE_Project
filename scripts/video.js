@@ -1,6 +1,6 @@
 console.log("Hello!")
 
-// 1 - Fetch, Load & Show Categories on HTML
+// 1 - Fetch, Load & Show Categories on HTML (BUTTON)
 
 // Create LoadCategories
 
@@ -20,7 +20,7 @@ const displayCategories = (data) => {
 
         // Create Button
         const button = document.createElement('button');
-        button.classList = 'btn bg-gray-100';
+        button.classList = 'btn bg-gray-100 border-none';
         button.innerText = item.category;
 
         // Add button to display
@@ -29,3 +29,13 @@ const displayCategories = (data) => {
 }
 
 loadCategories();
+
+// Fetch, Load & Show Categories on HTML (VIDEOS)
+
+async function loadVideos() {
+    const video = await fetch('https://openapi.programming-hero.com/api/phero-tube/videos');
+    const data = await video.json();
+    console.log(data);
+};
+
+loadVideos();
