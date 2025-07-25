@@ -82,7 +82,7 @@ const displayVideos = (data) => {
                 <div>
                     <h2 class = "font-bold">${item.title}</h2>
                     <div class = "flex gap-2">
-                        <small class = "text-gray-500">${item.authors[0].profile_name}</small>
+                        <small class = "text-gray-500 font-semibold">${item.authors[0].profile_name}</small>
                         <i class="fa-solid fa-star text-[#2568EF]"></i>
                     </div>
                 </div>
