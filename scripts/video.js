@@ -36,6 +36,12 @@ const LoadCategoryVideos = (id) => {
         .catch(error => console.log("ERROR IS: ", error))
 }
 
+// Search Items
+
+document.getElementById('search-input').addEventListener('keyup', (e) => {
+    loadVideos(e.target.value);
+})
+
 // Create DisplayCategories
 
 const displayCategories = (data) => {
@@ -57,9 +63,9 @@ loadCategories();
 
 // Fetch, Load & Show Categories on HTML (VIDEOS)
 
-async function loadVideos() {
+async function loadVideos(searchText = "") {
     try {
-        const video = await fetch('https://openapi.programming-hero.com/api/phero-tube/videos');
+        const video = await fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`);
         const data = await video.json();
         displayVideos(data.videos)
         // console.log(data.videos);
@@ -76,6 +82,8 @@ const loadVideoDetails = async(videoID) => {
     const dataVideoID = await videoId.json();
     displayDetails(dataVideoID.video)
 }
+
+// Display Details
 
 const displayDetails = (videoDetails) => {
     console.log(videoDetails)
