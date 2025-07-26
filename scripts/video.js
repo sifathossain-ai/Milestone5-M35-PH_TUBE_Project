@@ -102,21 +102,23 @@ const displayVideos = (data) => {
                     ${parseInt((item.others.posted_date) / 3600)} hrs ${parseInt(((item.others.posted_date) % 3600) / 60)} min ago</span>`
             }
             </figure>
-            <div class="px-0 py-4 flex gap-3 items-center">
-                <div>
-                    <img class = "h-10 w-10 object-cover rounded-full" src = ${item.authors[0].profile_picture} />
-                </div>
-
-                <div>
-                    <h2 class = "font-bold">${item.title}</h2>
-                    <div class = "flex gap-2">
-                        <small class = "text-gray-500 font-semibold">${item.authors[0].profile_name}</small>
-                        ${item.authors[0].verified === true ? `<i class="fa-solid fa-star text-[#2568EF]"></i>` : ""}
+            <div class="px-0 py-4 flex justify-between">
+                <div class = "flex gap-4 items-center">
+                    <div>
+                        <img class = "h-10 w-10 object-cover rounded-full" src = ${item.authors[0].profile_picture} />
                     </div>
-                    <p class = "mt-2">
-                        <button class = "bg-red-400 text-[10px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
-                    </p>
+
+                    <div>
+                        <h2 class = "font-bold">${item.title}</h2>
+                        <div class = "flex gap-2">
+                            <small class = "text-gray-500 font-semibold">${item.authors[0].profile_name}</small>
+                            ${item.authors[0].verified === true ? `<i class="fa-solid fa-star text-[#2568EF]"></i>` : ""}
+                        </div>
+                    </div>
                 </div>
+                <p class = "">
+                    <button class = "bg-red-400 text-[10px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
+                </p>
             </div>
         `;
         videoContainer.append(card);
