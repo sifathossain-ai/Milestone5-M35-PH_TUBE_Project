@@ -13,7 +13,7 @@ const loadCategories = () => {
 
 const removeActiveClass = () => {
     const buttons = document.getElementsByClassName('category-btn');
-    for (const btn of buttons){
+    for (const btn of buttons) {
         btn.classList.remove('active');
     }
     console.log(buttons);
@@ -113,6 +113,9 @@ const displayVideos = (data) => {
                         <small class = "text-gray-500 font-semibold">${item.authors[0].profile_name}</small>
                         ${item.authors[0].verified === true ? `<i class="fa-solid fa-star text-[#2568EF]"></i>` : ""}
                     </div>
+                    <p class = "mt-2">
+                        <button class = "bg-red-400 text-[10px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
+                    </p>
                 </div>
             </div>
         `;
