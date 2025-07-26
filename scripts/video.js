@@ -139,7 +139,7 @@ const displayVideos = (data) => {
                     </div>
                 </div>
                 <p class = "">
-                    <button onclick = "loadVideoDetails('${item.video_id}')" class = "bg-red-400 text-[10px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
+                    <button onclick = "loadVideoDetails('${item.video_id}')" class = "bg-red-400 text-[12px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
                 </p>
             </div>
         `;
