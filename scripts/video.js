@@ -1,7 +1,7 @@
 // 1 - Fetch, Load & Show Categories on HTML (BUTTON)
 
 // Create LoadCategories
-
+// Work - 1:
 const loadCategories = () => {
     fetch('https://openapi.programming-hero.com/api/phero-tube/categories')
         .then(res => res.json())
@@ -10,17 +10,17 @@ const loadCategories = () => {
 };
 
 // Remove Active Class
-
+// Work - 8
 const removeActiveClass = () => {
     const buttons = document.getElementsByClassName('category-btn');
     for (const btn of buttons) {
         btn.classList.remove('active');
     }
-    console.log(buttons);
+    // console.log(buttons);
 }
 
 // Show Category Wise Videos
-
+// Work - 7:
 const LoadCategoryVideos = (id) => {
     // alert(id);
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
@@ -37,18 +37,17 @@ const LoadCategoryVideos = (id) => {
 }
 
 // Search Items
-
+// Work - 9:
 document.getElementById('search-input').addEventListener('keyup', (e) => {
     loadVideos(e.target.value);
 })
 
 // Create DisplayCategories
-
+// Work - 3:
 const displayCategories = (data) => {
     const categoryDisplay = document.getElementById('categories');
     for (const item of data) {
         // console.log(item);
-
         // Create Button
         const buttonContainer = document.createElement('div');
         buttonContainer.innerHTML = `
@@ -58,11 +57,11 @@ const displayCategories = (data) => {
         categoryDisplay.appendChild(buttonContainer)
     }
 };
-
+// Work - 2:
 loadCategories();
 
 // Fetch, Load & Show Categories on HTML (VIDEOS)
-
+// Work - 4:
 async function loadVideos(searchText = "") {
     try {
         const video = await fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`);
@@ -76,7 +75,7 @@ async function loadVideos(searchText = "") {
 };
 
 // Load Details Videos
-
+// Work - 10
 const loadVideoDetails = async(videoID) => {
     const videoId = await fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${videoID}`)
     const dataVideoID = await videoId.json();
@@ -84,7 +83,7 @@ const loadVideoDetails = async(videoID) => {
 }
 
 // Display Details
-
+// Work - 11:
 const displayDetails = (videoDetails) => {
     console.log(videoDetails)
     const modalContent = document.getElementById('modal-content');
@@ -99,6 +98,7 @@ const displayDetails = (videoDetails) => {
     // document.getElementById('customModal').showModal();
 }
 
+// Work - 6:
 const displayVideos = (data) => {
     const videoContainer = document.getElementById('videos');
     videoContainer.innerHTML = "";
@@ -122,16 +122,11 @@ const displayVideos = (data) => {
         card.classList = " ";
         card.innerHTML = `
             <figure class = "h-[200px] relative">
-                <img
-                src=${item.thumbnail}
-                class = "h-full w-full object-cover rounded-lg"
-                alt="Videos" />
+                <img src=${item.thumbnail} class = "h-full w-full object-cover rounded-lg" alt="Videos" />
 
-                ${item.others.posted_date?.length == 0 ? "" :
-                `<span class ="absolute right-2 bottom-2 bg-black rounded-md text-white py-1 px-1.5 text-center text-[10px]">
-                    ${parseInt((item.others.posted_date) / 3600)} hrs ${parseInt(((item.others.posted_date) % 3600) / 60)} min ago</span>`
-            }
+                ${item.others.posted_date?.length == 0 ? "" : `<span class ="absolute right-2 bottom-2 bg-black rounded-md text-white py-1 px-1.5 text-center text-[10px]"> ${parseInt((item.others.posted_date) / 3600)} hrs ${parseInt(((item.others.posted_date) % 3600) / 60)} min ago</span>`}
             </figure>
+
             <div class="px-0 py-4 flex justify-between">
                 <div class = "flex gap-4 items-center">
                     <div>
@@ -146,6 +141,7 @@ const displayVideos = (data) => {
                         </div>
                     </div>
                 </div>
+
                 <p class = "">
                     <button onclick = "loadVideoDetails('${item.video_id}')" class = "bg-red-400 text-[12px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
                 </p>
@@ -155,4 +151,5 @@ const displayVideos = (data) => {
     });
 }
 
+// Work - 5:
 loadVideos();
