@@ -69,6 +69,28 @@ async function loadVideos() {
     }
 };
 
+// Load Details Videos
+
+const loadVideoDetails = async(videoID) => {
+    const videoId = await fetch(`https://openapi.programming-hero.com/api/phero-tube/video/${videoID}`)
+    const dataVideoID = await videoId.json();
+    displayDetails(dataVideoID.video)
+}
+
+const displayDetails = (videoDetails) => {
+    console.log(videoDetails)
+    const modalContent = document.getElementById('modal-content');
+
+    modalContent.innerHTML = `
+        <h2 class = "text-xl font-bold my-2">Total Views: ${videoDetails.others.views}</h2>
+        <p><span style = "color: red;">Description:</span> ${videoDetails.description}</p>
+    `
+    // way-1
+    document.getElementById('showModalData').click();
+    // way-2
+    // document.getElementById('customModal').showModal();
+}
+
 const displayVideos = (data) => {
     const videoContainer = document.getElementById('videos');
     videoContainer.innerHTML = "";
@@ -117,7 +139,7 @@ const displayVideos = (data) => {
                     </div>
                 </div>
                 <p class = "">
-                    <button class = "bg-red-400 text-[10px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
+                    <button onclick = "loadVideoDetails('${item.video_id}')" class = "bg-red-400 text-[10px] py-1 px-2 rounded-sm text-white font-semibold">Details</button>
                 </p>
             </div>
         `;
