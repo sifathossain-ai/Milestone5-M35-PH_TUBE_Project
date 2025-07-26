@@ -9,13 +9,30 @@ const loadCategories = () => {
         .catch(error => console.log("ERROR IS: ", error))
 };
 
+// Remove Active Class
+
+const removeActiveClass = () => {
+    const buttons = document.getElementsByClassName('category-btn');
+    for (const btn of buttons){
+        btn.classList.remove('active');
+    }
+    console.log(buttons);
+}
+
 // Show Category Wise Videos
 
 const LoadCategoryVideos = (id) => {
     // alert(id);
     fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
         .then(res => res.json())
-        .then(data => displayVideos(data.category))
+        .then(data => {
+            // Remove Active Class
+            removeActiveClass();
+            // Call Active Class
+            const activeBtn = document.getElementById(`btn-${id}`);
+            activeBtn.classList.add('active');
+            displayVideos(data.category);
+        })
         .catch(error => console.log("ERROR IS: ", error))
 }
 
@@ -29,7 +46,7 @@ const displayCategories = (data) => {
         // Create Button
         const buttonContainer = document.createElement('div');
         buttonContainer.innerHTML = `
-            <button onclick = "LoadCategoryVideos(${item.category_id})" class ="btn bg-gray-100 border-none">${item.category}</button>
+            <button id ="btn-${item.category_id}" onclick = "LoadCategoryVideos(${item.category_id})" class ="btn bg-gray-100 border-none category-btn">${item.category}</button>
         `
         // Add button to display
         categoryDisplay.appendChild(buttonContainer)
@@ -52,30 +69,11 @@ async function loadVideos() {
     }
 };
 
-/* const cardDemo = {
-    "category_id": "1003",
-    "video_id": "aaac",
-    "thumbnail": "https://i.ibb.co/NTncwqH/luahg-at-pain.jpg",
-    "title": "Laugh at My Pain",
-    "authors": [
-        {
-            "profile_picture": "https://i.ibb.co/XVHM7NP/kevin.jpg",
-            "profile_name": "Kevin Hart",
-            "verified": false
-        }
-    ],
-    "others": {
-        "views": "1.1K",
-        "posted_date": "13885"
-    },
-    "description": "Comedian Kevin Hart brings his unique brand of humor to life in 'Laugh at My Pain.' With 1.1K views, this show offers a hilarious and candid look into Kevin's personal stories, struggles, and triumphs. It's a laugh-out-loud experience filled with sharp wit, clever insights, and a relatable charm that keeps audiences coming back for more."
-}
- */
 const displayVideos = (data) => {
     const videoContainer = document.getElementById('videos');
     videoContainer.innerHTML = "";
 
-    if (data.length === 0){
+    if (data.length === 0) {
         videoContainer.classList.remove('grid');
         videoContainer.innerHTML = `
             <div class = "min-h-[300px] flex flex-col gap-3 justify-center items-center">
@@ -84,7 +82,7 @@ const displayVideos = (data) => {
             </div>
         `
     }
-    else{
+    else {
         videoContainer.classList.add('grid');
     }
 
